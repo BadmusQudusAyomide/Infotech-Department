@@ -5,585 +5,739 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Information Technology Department | FOCIT</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Animate.css for animations -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#003366', // Deep Blue
+                        secondary: '#FFD700', // Gold
+                        accent: '#008000', // Green
+                    },
+                    animation: {
+                        'spin-slow': 'spin 3s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* Custom styles */
         .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)),
+                url('2.jpg');
             background-size: cover;
             background-position: center;
+        }
+
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         .card-hover:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            transition: all 0.3s ease;
         }
 
-        .faculty-card:hover .faculty-img {
-            transform: scale(1.05);
-            transition: transform 0.3s ease;
+        /* Updated hover states */
+        .nav-link:hover {
+            color: #FFD700 !important;
+            border-color: #FFD700 !important;
         }
 
-        .news-card:hover {
-            transform: scale(1.02);
-            transition: transform 0.3s ease;
+        .btn-primary {
+            background-color: #FFD700;
+            color: #003366;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+        .btn-primary:hover {
+            background-color: #003366;
+            color: #FFD700;
+        }
+
+        .btn-secondary {
+            background-color: #008000;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #006400;
+        }
+
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            h1 {
+                font-size: 2rem !important;
+                line-height: 1.2;
+            }
+
+            h2 {
+                font-size: 1.75rem !important;
+            }
+
+            h3 {
+                font-size: 1.25rem !important;
+            }
+
+            .mobile-py {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+
+            .mobile-px {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .mobile-stack {
+                flex-direction: column !important;
+            }
+
+            .mobile-full {
+                width: 100% !important;
+            }
+
+            .mobile-text-center {
+                text-align: center !important;
+            }
+
+            .mobile-mt {
+                margin-top: 1rem !important;
+            }
+
+            .mobile-mb {
+                margin-bottom: 1rem !important;
             }
         }
 
-        .fade-in-up {
-            animation: fadeInUp 1s ease forwards;
+        /* Improved Navigation Styles */
+        .mobile-menu-button {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .desktop-menu {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #003366;
+                /* primary color */
+                padding: 1rem;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                z-index: 50;
+            }
+
+            .mobile-menu.show {
+                display: block;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .mobile-menu {
+                display: none !important;
+            }
         }
     </style>
 </head>
 
-<body class="font-sans bg-gray-50">
+<body class="font-sans antialiased">
     <!-- Navigation -->
-    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <i class="fas fa-laptop-code text-2xl"></i>
-                <a href="#" class="text-xl font-bold">IT Department</a>
-            </div>
+    <nav class="bg-primary shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo and Brand -->
+                <div class="flex-shrink-0 flex items-center">
+                    <img class="h-8 w-auto sm:h-10" src="logo.jpg" alt="NAITS UNIOSUN Logo">
+                    <span class="ml-2 text-xl font-bold text-secondary">FOCIT</span>
+                </div>
 
-            <div class="hidden md:flex space-x-6">
-                <a href="#home" class="hover:text-blue-300 transition">Home</a>
-                <a href="#about" class="hover:text-blue-300 transition">About</a>
-                <a href="#programs" class="hover:text-blue-300 transition">Programs</a>
-                <a href="#faculty" class="hover:text-blue-300 transition">Faculty</a>
-                <a href="#research" class="hover:text-blue-300 transition">Research</a>
-                <a href="#contact" class="hover:text-blue-300 transition">Contact</a>
-            </div>
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex md:items-center md:space-x-4">
+                    <a href="#" class="text-white hover:text-secondary px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="#about" class="text-white hover:text-secondary px-3 py-2 text-sm font-medium">About</a>
+                    <a href="#programs"
+                        class="text-white hover:text-secondary px-3 py-2 text-sm font-medium">Programs</a>
+                    <a href="#faculty" class="text-white hover:text-secondary px-3 py-2 text-sm font-medium">Faculty</a>
+                    <a href="#research"
+                        class="text-white hover:text-secondary px-3 py-2 text-sm font-medium">Research</a>
+                    <a href="#contact" class="text-white hover:text-secondary px-3 py-2 text-sm font-medium">Contact</a>
+                </div>
 
-            <button class="md:hidden focus:outline-none" id="menu-toggle">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
+                <!-- Mobile menu button -->
+                <button type="button" id="mobile-menu-button"
+                    class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-white hover:text-secondary focus:outline-none"
+                    aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
         </div>
 
         <!-- Mobile menu -->
-        <div class="md:hidden hidden bg-blue-800 px-4 py-2" id="mobile-menu">
-            <a href="#home" class="block py-2 hover:text-blue-300 transition">Home</a>
-            <a href="#about" class="block py-2 hover:text-blue-300 transition">About</a>
-            <a href="#programs" class="block py-2 hover:text-blue-300 transition">Programs</a>
-            <a href="#faculty" class="block py-2 hover:text-blue-300 transition">Faculty</a>
-            <a href="#research" class="block py-2 hover:text-blue-300 transition">Research</a>
-            <a href="#contact" class="block py-2 hover:text-blue-300 transition">Contact</a>
+        <div id="mobile-menu" class="mobile-menu md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="block text-white hover:text-secondary px-3 py-2 text-base font-medium">Home</a>
+                <a href="#about" class="block text-white hover:text-secondary px-3 py-2 text-base font-medium">About</a>
+                <a href="#programs"
+                    class="block text-white hover:text-secondary px-3 py-2 text-base font-medium">Programs</a>
+                <a href="#faculty"
+                    class="block text-white hover:text-secondary px-3 py-2 text-base font-medium">Faculty</a>
+                <a href="#research"
+                    class="block text-white hover:text-secondary px-3 py-2 text-base font-medium">Research</a>
+                <a href="#contact"
+                    class="block text-white hover:text-secondary px-3 py-2 text-base font-medium">Contact</a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-bg text-white py-20 md:py-32">
-        <div class="container mx-auto px-4 text-center animate__animated animate__fadeIn">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4">Information Technology Department</h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Pioneering excellence in IT education, research, and
-                innovation under the Faculty of Computing and Information Technology</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
+    <header class="hero-bg text-white py-12 sm:py-20 md:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 animate__animated animate__fadeInDown">
+                Information Technology Department
+            </h1>
+            <p
+                class="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 max-w-3xl mx-auto animate__animated animate__fadeIn animate__delay-1s">
+                Empowering the future through innovative technology education and research
+            </p>
+            <div
+                class="flex flex-col sm:flex-row justify-center gap-4 animate__animated animate__fadeIn animate__delay-2s">
                 <a href="#programs"
-                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 transform hover:scale-105">Explore
-                    Programs</a>
+                    class="w-full sm:w-auto bg-secondary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-secondary transition duration-300">
+                    Explore Programs
+                </a>
                 <a href="#contact"
-                    class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-900 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 transform hover:scale-105">Contact
-                    Us</a>
+                    class="w-full sm:w-auto bg-accent text-white px-6 py-3 rounded-md font-medium hover:bg-secondary hover:text-primary transition duration-300">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">About Our Department</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Part of the Faculty of Computing and Information
+                    Technology (FOCIT)</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate__animated animate__fadeInLeft">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Welcome to IT Department</h3>
+                    <p class="text-gray-600 mb-4">The Information Technology Department at our university is a vibrant
+                        community of scholars, researchers, and students dedicated to advancing the field of IT through
+                        education, innovation, and research.</p>
+                    <p class="text-gray-600 mb-6">We offer comprehensive programs that prepare students for careers in
+                        various IT domains, equipping them with both theoretical knowledge and practical skills to excel
+                        in the rapidly evolving tech landscape.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <div class="bg-primary rounded-full p-2 mr-3">
+                                <i class="fas fa-check text-white"></i>
+                            </div>
+                            <span class="text-gray-700">Industry-Relevant Curriculum</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary rounded-full p-2 mr-3">
+                                <i class="fas fa-check text-white"></i>
+                            </div>
+                            <span class="text-gray-700">State-of-the-Art Labs</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary rounded-full p-2 mr-3">
+                                <i class="fas fa-check text-white"></i>
+                            </div>
+                            <span class="text-gray-700">Experienced Faculty</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary rounded-full p-2 mr-3">
+                                <i class="fas fa-check text-white"></i>
+                            </div>
+                            <span class="text-gray-700">Research Opportunities</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="animate__animated animate__fadeInRight">
+                    <div class="relative rounded-xl overflow-hidden shadow-lg">
+                        <img src="1.jpg" alt="Students in IT lab" class="w-full h-auto">
+                        <div class="absolute inset-0 bg-primary opacity-20"></div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                            <h4 class="text-white text-xl font-semibold">Our Students at Work</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4 animate__animated animate__fadeIn">About
-                    Our Department</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-3xl mx-auto">The Information Technology Department is a leading center for
-                    IT education and research, committed to producing skilled professionals ready to tackle the
-                    challenges of the digital age.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="animate__animated animate__fadeInLeft">
-                    <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                        alt="IT Department" class="rounded-lg shadow-xl w-full h-auto">
+    <!-- Stats Section -->
+    <section class="py-16 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="animate__animated animate__fadeInUp">
+                    <div class="text-4xl font-bold mb-2 text-secondary">500+</div>
+                    <div class="text-lg">Students</div>
                 </div>
-                <div class="animate__animated animate__fadeInRight">
-                    <h3 class="text-2xl font-bold text-blue-800 mb-4">Our Mission</h3>
-                    <p class="text-gray-600 mb-6">To provide high-quality education in Information Technology that
-                        prepares students for successful careers, fosters innovation, and contributes to solving
-                        real-world problems through cutting-edge research.</p>
-
-                    <h3 class="text-2xl font-bold text-blue-800 mb-4">Our Vision</h3>
-                    <p class="text-gray-600 mb-6">To be recognized as a premier IT department that produces globally
-                        competitive graduates and advances knowledge through impactful research and community
-                        engagement.</p>
-
-                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-600">
-                        <h4 class="font-bold text-blue-800 mb-2">Key Highlights</h4>
-                        <ul class="list-disc list-inside text-gray-600 space-y-1">
-                            <li>State-of-the-art computing facilities</li>
-                            <li>Industry-aligned curriculum</li>
-                            <li>Experienced faculty members</li>
-                            <li>Strong industry partnerships</li>
-                            <li>Active research programs</li>
-                        </ul>
-                    </div>
+                <div class="animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="text-4xl font-bold mb-2 text-secondary">25+</div>
+                    <div class="text-lg">Faculty Members</div>
+                </div>
+                <div class="animate__animated animate__fadeInUp animate__delay-2s">
+                    <div class="text-4xl font-bold mb-2 text-secondary">15+</div>
+                    <div class="text-lg">Research Labs</div>
+                </div>
+                <div class="animate__animated animate__fadeInUp animate__delay-3s">
+                    <div class="text-4xl font-bold mb-2 text-secondary">95%</div>
+                    <div class="text-lg">Graduate Employment</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Programs Section -->
-    <section id="programs" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
+    <section id="programs" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Academic Programs</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-3xl mx-auto">We offer comprehensive programs designed to equip students
-                    with the knowledge and skills needed in today's dynamic IT landscape.</p>
+                <h2 class="text-3xl font-bold text-primary mb-4">Our Academic Programs</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Comprehensive programs designed to meet industry
+                    demands</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
                 <!-- Undergraduate Program -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover transition duration-300 fade-in-up"
-                    style="animation-delay: 0.1s;">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
-                        alt="Undergraduate Program" class="w-full h-48 object-cover">
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 card-hover animate__animated animate__fadeIn">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover"
+                            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                            alt="Undergraduate program">
+                    </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-blue-800 mb-2">Bachelor of Science in IT</h3>
-                        <p class="text-gray-600 mb-4">A 4-year program providing comprehensive knowledge in information
-                            systems, programming, networking, and emerging technologies.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Full-time</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">4 Years</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">120 Credits</span>
+                        <div class="uppercase tracking-wide text-sm text-accent font-semibold">Bachelor's Degree</div>
+                        <h3 class="mt-2 text-xl font-semibold text-primary">BSc in Information Technology</h3>
+                        <p class="mt-2 text-gray-600">4-year comprehensive program covering software development,
+                            networking, databases, and IT systems management.</p>
+                        <div class="mt-4">
+                            <a href="#" class="text-accent font-medium hover:text-secondary">Learn more →</a>
                         </div>
-                        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition">Learn More <i
-                                class="fas fa-arrow-right ml-1"></i></a>
                     </div>
                 </div>
 
-                <!-- Masters Program -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover transition duration-300 fade-in-up"
-                    style="animation-delay: 0.3s;">
-                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                        alt="Masters Program" class="w-full h-48 object-cover">
+                <!-- Master's Program -->
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 card-hover animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover"
+                            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                            alt="Master's program">
+                    </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-blue-800 mb-2">MSc in Information Technology</h3>
-                        <p class="text-gray-600 mb-4">Advanced study program focusing on specialized areas like data
-                            science, cybersecurity, and enterprise systems.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Full/Part-time</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">2 Years</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">36 Credits</span>
+                        <div class="uppercase tracking-wide text-sm text-accent font-semibold">Master's Degree</div>
+                        <h3 class="mt-2 text-xl font-semibold text-primary">MSc in IT Management</h3>
+                        <p class="mt-2 text-gray-600">Advanced program focusing on IT leadership, project management,
+                            and strategic technology implementation.</p>
+                        <div class="mt-4">
+                            <a href="#" class="text-accent font-medium hover:text-secondary">Learn more →</a>
                         </div>
-                        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition">Learn More <i
-                                class="fas fa-arrow-right ml-1"></i></a>
                     </div>
                 </div>
 
                 <!-- PhD Program -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover transition duration-300 fade-in-up"
-                    style="animation-delay: 0.5s;">
-                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                        alt="PhD Program" class="w-full h-48 object-cover">
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 card-hover animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover"
+                            src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                            alt="PhD program">
+                    </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-blue-800 mb-2">PhD in IT</h3>
-                        <p class="text-gray-600 mb-4">Research-intensive program for those seeking to contribute
-                            original knowledge to the field of Information Technology.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Research</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">3-5 Years</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Dissertation</span>
+                        <div class="uppercase tracking-wide text-sm text-accent font-semibold">Doctoral Program</div>
+                        <h3 class="mt-2 text-xl font-semibold text-primary">PhD in Information Technology</h3>
+                        <p class="mt-2 text-gray-600">Research-intensive program for those seeking to advance knowledge
+                            in specialized IT domains.</p>
+                        <div class="mt-4">
+                            <a href="#" class="text-accent font-medium hover:text-secondary">Learn more →</a>
                         </div>
-                        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition">Learn More <i
-                                class="fas fa-arrow-right ml-1"></i></a>
                     </div>
                 </div>
             </div>
 
             <div class="mt-12 text-center">
                 <a href="#"
-                    class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 transform hover:scale-105">
-                    View All Programs <i class="fas fa-arrow-right ml-2"></i>
+                    class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary hover:bg-accent transition duration-300">
+                    View All Programs
+                    <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Faculty Section -->
-    <section id="faculty" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
+    <section id="faculty" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Our Faculty</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-3xl mx-auto">Meet our distinguished faculty members who are experts in
-                    their fields and dedicated to student success.</p>
+                <h2 class="text-3xl font-bold text-primary mb-4">Our Faculty Members</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Meet our distinguished faculty members who are
+                    experts in their fields</p>
             </div>
 
-            <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <!-- Faculty Member 1 -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Head of Department -->
                 <div
-                    class="bg-white rounded-lg shadow-md overflow-hidden faculty-card transition duration-300 hover:shadow-xl">
-                    <div class="overflow-hidden h-64">
-                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-                            alt="Dr. Sarah Johnson"
-                            class="w-full h-full object-cover faculty-img transition duration-500">
+                    class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover animate__animated animate__fadeIn">
+                    <div class="h-64 overflow-hidden">
+                        <img class="w-full h-full object-cover" src="Head Of Department.jpg" alt="Head of Department">
                     </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-bold text-blue-800">Dr. Sarah Johnson</h3>
-                        <p class="text-blue-600 text-sm mb-2">Professor & Head of Department</p>
-                        <p class="text-gray-600 text-sm">Specialization: Artificial Intelligence, Machine Learning</p>
-                        <div class="flex mt-3 space-x-2">
-                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-envelope"></i></a>
-                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-file-alt"></i></a>
+                    <div class="p-4 text-center">
+                        <h3 class="text-lg font-semibold text-gray-900">Head of Department</h3>
+                        <p class="text-sm text-primary mb-2">Professor, Head of Department</p>
+                        <p class="text-sm text-gray-600">Specialization: Data Science & AI</p>
+                        <div class="mt-3 flex justify-center space-x-3">
+                            <a href="#" class="text-gray-500 hover:text-primary"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-primary"><i class="fas fa-envelope"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-primary"><i class="fas fa-globe"></i></a>
                         </div>
                     </div>
                 </div>
-
-                <!-- Faculty Member 2 -->
+                <!-- Placeholder Faculty -->
                 <div
-                    class="bg-white rounded-lg shadow-md overflow-hidden faculty-card transition duration-300 hover:shadow-xl">
-                    <div class="overflow-hidden h-64">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-                            alt="Dr. Michael Chen"
-                            class="w-full h-full object-cover faculty-img transition duration-500">
+                    class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="h-64 overflow-hidden flex items-center justify-center bg-gray-100">
+                        <img class="w-24 h-24 object-cover rounded-full mx-auto"
+                            src="https://via.placeholder.com/150?text=Faculty" alt="Faculty placeholder">
                     </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-bold text-blue-800">Dr. Michael Chen</h3>
-                        <p class="text-blue-600 text-sm mb-2">Associate Professor</p>
-                        <p class="text-gray-600 text-sm">Specialization: Cybersecurity, Network Security</p>
-                        <div class="flex mt-3 space-x-2">
-                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-envelope"></i></a>
-                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-file-alt"></i></a>
-                        </div>
+                    <div class="p-4 text-center">
+                        <h3 class="text-lg font-semibold text-gray-900">Faculty Member</h3>
+                        <p class="text-sm text-primary mb-2">Position</p>
+                        <p class="text-sm text-gray-600">Specialization</p>
                     </div>
                 </div>
-
-                <!-- Faculty Member 3 -->
                 <div
-                    class="bg-white rounded-lg shadow-md overflow-hidden faculty-card transition duration-300 hover:shadow-xl">
-                    <div class="overflow-hidden h-64">
-                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-                            alt="Dr. Priya Patel"
-                            class="w-full h-full object-cover faculty-img transition duration-500">
+                    class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="h-64 overflow-hidden flex items-center justify-center bg-gray-100">
+                        <img class="w-24 h-24 object-cover rounded-full mx-auto"
+                            src="https://via.placeholder.com/150?text=Faculty" alt="Faculty placeholder">
                     </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-bold text-blue-800">Dr. Priya Patel</h3>
-                        <p class="text-blue-600 text-sm mb-2">Assistant Professor</p>
-                        <p class="text-gray-600 text-sm">Specialization: Data Science, Big Data Analytics</p>
-                        <div class="flex mt-3 space-x-2">
-                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-envelope"></i></a>
-                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-file-alt"></i></a>
-                        </div>
+                    <div class="p-4 text-center">
+                        <h3 class="text-lg font-semibold text-gray-900">Faculty Member</h3>
+                        <p class="text-sm text-primary mb-2">Position</p>
+                        <p class="text-sm text-gray-600">Specialization</p>
                     </div>
                 </div>
-
-                <!-- Faculty Member 4 -->
                 <div
-                    class="bg-white rounded-lg shadow-md overflow-hidden faculty-card transition duration-300 hover:shadow-xl">
-                    <div class="overflow-hidden h-64">
-                        <img src="https://images.unsplash.com/photo-1573497019538-3714be7ac5f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                            alt="Dr. Robert Williams"
-                            class="w-full h-full object-cover faculty-img transition duration-500">
+                    class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover animate__animated animate__fadeIn animate__delay-3s">
+                    <div class="h-64 overflow-hidden flex items-center justify-center bg-gray-100">
+                        <img class="w-24 h-24 object-cover rounded-full mx-auto"
+                            src="https://via.placeholder.com/150?text=Faculty" alt="Faculty placeholder">
                     </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-bold text-blue-800">Dr. Robert Williams</h3>
-                        <p class="text-blue-600 text-sm mb-2">Professor</p>
-                        <p class="text-gray-600 text-sm">Specialization: Cloud Computing, Distributed Systems</p>
-                        <div class="flex mt-3 space-x-2">
-                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-envelope"></i></a>
-                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-file-alt"></i></a>
-                        </div>
+                    <div class="p-4 text-center">
+                        <h3 class="text-lg font-semibold text-gray-900">Faculty Member</h3>
+                        <p class="text-sm text-primary mb-2">Position</p>
+                        <p class="text-sm text-gray-600">Specialization</p>
                     </div>
                 </div>
             </div>
 
             <div class="mt-12 text-center">
                 <a href="#"
-                    class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 transform hover:scale-105">
-                    View All Faculty Members <i class="fas fa-arrow-right ml-2"></i>
+                    class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary hover:bg-accent transition duration-300">
+                    View All Faculty
+                    <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Research Section -->
-    <section id="research" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
+    <section id="research" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Research & Innovation</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-3xl mx-auto">Our department is at the forefront of IT research,
-                    contributing to advancements in various domains of computing and information technology.</p>
+                <h2 class="text-3xl font-bold text-primary mb-4">Research & Innovation</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Pushing the boundaries of technology through
+                    cutting-edge research</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold text-blue-800 mb-4">Research Areas</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fas fa-microchip text-blue-600 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Artificial Intelligence & Machine Learning</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-shield-alt text-blue-600 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Cybersecurity & Cryptography</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-database text-blue-600 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Data Science & Big Data Analytics</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-cloud text-blue-600 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Cloud Computing & Distributed Systems</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-network-wired text-blue-600 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Internet of Things (IoT) & Edge Computing</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-mobile-alt text-blue-600 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Human-Computer Interaction</span>
-                        </li>
-                    </ul>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Research Area 1 -->
+                <div
+                    class="bg-gray-50 rounded-lg p-6 transition-all duration-300 card-hover animate__animated animate__fadeIn">
+                    <div class="text-secondary text-4xl mb-4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-3">Cybersecurity Research</h3>
+                    <p class="text-gray-600 mb-4">Developing advanced security protocols, encryption methods, and threat
+                        detection systems to protect digital infrastructure.</p>
+                    <a href="#" class="text-accent font-medium hover:text-secondary inline-flex items-center">
+                        Learn more
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
 
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold text-blue-800 mb-4">Research Centers</h3>
-                    <div class="space-y-4">
-                        <div class="border-l-4 border-blue-600 pl-4 py-2 bg-blue-50">
-                            <h4 class="font-bold text-blue-700">Center for AI Research (CAIR)</h4>
-                            <p class="text-gray-600 text-sm">Focusing on advancing AI technologies and their ethical
-                                applications.</p>
-                        </div>
-                        <div class="border-l-4 border-blue-600 pl-4 py-2 bg-blue-50">
-                            <h4 class="font-bold text-blue-700">Cybersecurity Innovation Lab</h4>
-                            <p class="text-gray-600 text-sm">Developing solutions for emerging cybersecurity threats.
-                            </p>
-                        </div>
-                        <div class="border-l-4 border-blue-600 pl-4 py-2 bg-blue-50">
-                            <h4 class="font-bold text-blue-700">Data Science Institute</h4>
-                            <p class="text-gray-600 text-sm">Exploring big data analytics and visualization techniques.
-                            </p>
-                        </div>
-                        <div class="border-l-4 border-blue-600 pl-4 py-2 bg-blue-50">
-                            <h4 class="font-bold text-blue-700">IoT & Smart Systems Lab</h4>
-                            <p class="text-gray-600 text-sm">Researching connected devices and smart technologies.</p>
-                        </div>
+                <!-- Research Area 2 -->
+                <div
+                    class="bg-gray-50 rounded-lg p-6 transition-all duration-300 card-hover animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="text-secondary text-4xl mb-4">
+                        <i class="fas fa-brain"></i>
                     </div>
+                    <h3 class="text-xl font-semibold text-primary mb-3">Artificial Intelligence</h3>
+                    <p class="text-gray-600 mb-4">Exploring machine learning algorithms, neural networks, and AI
+                        applications across various industries.</p>
+                    <a href="#" class="text-accent font-medium hover:text-secondary inline-flex items-center">
+                        Learn more
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Research Area 3 -->
+                <div
+                    class="bg-gray-50 rounded-lg p-6 transition-all duration-300 card-hover animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="text-secondary text-4xl mb-4">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-3">Network Systems</h3>
+                    <p class="text-gray-600 mb-4">Innovating in 5G technologies, IoT networks, and next-generation
+                        communication systems.</p>
+                    <a href="#" class="text-accent font-medium hover:text-secondary inline-flex items-center">
+                        Learn more
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="bg-blue-900 text-white rounded-lg p-8 shadow-lg">
-                <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4">Industry Collaborations</h3>
-                        <p class="mb-6">We partner with leading tech companies to ensure our research addresses
-                            real-world challenges and our students gain practical experience.</p>
-                        <div class="flex flex-wrap gap-4">
-                            <img src="https://logo.clearbit.com/google.com" alt="Google"
-                                class="h-10 bg-white p-1 rounded">
-                            <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft"
-                                class="h-10 bg-white p-1 rounded">
-                            <img src="https://logo.clearbit.com/ibm.com" alt="IBM" class="h-10 bg-white p-1 rounded">
-                            <img src="https://logo.clearbit.com/amazon.com" alt="Amazon"
-                                class="h-10 bg-white p-1 rounded">
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">What Our Students Say</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Hear from our current students and alumni about their
+                    experiences</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div
+                    class="bg-white p-6 rounded-lg shadow-md transition-all duration-300 card-hover animate__animated animate__fadeIn">
+                    <div class="flex items-center mb-4">
+                        <img class="h-12 w-12 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                            alt="Student">
+                        <div class="ml-4">
+                            <h4 class="text-lg font-semibold">Adetoun Adebisi</h4>
+                            <p class="text-gray-600 text-sm">BSc IT, Class of 2022</p>
                         </div>
                     </div>
-                    <div class="text-center">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                            alt="Research Collaboration" class="rounded-lg shadow-md w-full max-w-md mx-auto">
+                    <p class="text-gray-700">"The IT program provided me with both the technical skills and
+                        problem-solving abilities needed to excel in my career. The hands-on projects were particularly
+                        valuable."</p>
+                    <div class="mt-4 text-secondary">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div
+                    class="bg-white p-6 rounded-lg shadow-md transition-all duration-300 card-hover animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="flex items-center mb-4">
+                        <img class="h-12 w-12 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                            alt="Student">
+                        <div class="ml-4">
+                            <h4 class="text-lg font-semibold">Oluwaseun Adeyemi</h4>
+                            <p class="text-gray-600 text-sm">MSc IT Management, Current Student</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"The faculty's industry experience brings real-world perspective to the
+                        classroom. The networking opportunities with tech companies have been invaluable."</p>
+                    <div class="mt-4 text-secondary">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div
+                    class="bg-white p-6 rounded-lg shadow-md transition-all duration-300 card-hover animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="flex items-center mb-4">
+                        <img class="h-12 w-12 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                            alt="Student">
+                        <div class="ml-4">
+                            <h4 class="text-lg font-semibold">Ayomide Ogunleye</h4>
+                            <p class="text-gray-600 text-sm">PhD Candidate</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"The research facilities and mentorship available in the IT department are
+                        exceptional. I've been able to publish papers and present at international conferences."</p>
+                    <div class="mt-4 text-secondary">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- News & Events Section -->
+    <!-- Events Section -->
     <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">News & Events</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-3xl mx-auto">Stay updated with the latest happenings in our department and
-                    the broader IT community.</p>
+                <h2 class="text-3xl font-bold text-primary mb-4">Upcoming Events</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Join us for workshops, seminars, and tech talks</p>
             </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- News Item 1 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden news-card transition duration-300">
-                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                        alt="IT Conference" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-2">
-                            <i class="far fa-calendar-alt mr-2"></i>
-                            <span>June 15, 2023</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-blue-800 mb-2">Annual IT Conference 2023</h3>
-                        <p class="text-gray-600 mb-4">Join us for our flagship event featuring industry leaders and
-                            cutting-edge research presentations.</p>
-                        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition">Read More <i
-                                class="fas fa-arrow-right ml-1"></i></a>
-                    </div>
-                </div>
-
-                <!-- News Item 2 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden news-card transition duration-300">
-                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80"
-                        alt="Student Achievement" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-2">
-                            <i class="far fa-calendar-alt mr-2"></i>
-                            <span>May 28, 2023</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-blue-800 mb-2">Student Team Wins National Hackathon</h3>
-                        <p class="text-gray-600 mb-4">Our undergraduate team developed an innovative AI solution for
-                            healthcare monitoring.</p>
-                        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition">Read More <i
-                                class="fas fa-arrow-right ml-1"></i></a>
-                    </div>
-                </div>
-
-                <!-- News Item 3 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden news-card transition duration-300">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
-                        alt="New Lab" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-2">
-                            <i class="far fa-calendar-alt mr-2"></i>
-                            <span>April 10, 2023</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-blue-800 mb-2">New Quantum Computing Lab Inaugurated</h3>
-                        <p class="text-gray-600 mb-4">The department has established a state-of-the-art quantum
-                            computing research facility.</p>
-                        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition">Read More <i
-                                class="fas fa-arrow-right ml-1"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-12 text-center">
-                <a href="#"
-                    class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 transform hover:scale-105">
-                    View All News & Events <i class="fas fa-arrow-right ml-2"></i>
-                </a>
+            <div class="text-center py-12">
+                <p class="text-xl text-gray-500 font-semibold">No upcoming event</p>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Contact Us</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-3xl mx-auto">We'd love to hear from you! Reach out for inquiries,
-                    collaborations, or to learn more about our programs.</p>
+                <h2 class="text-3xl font-bold text-primary mb-4">Contact Us</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Get in touch with the Information Technology
+                    Department</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold text-blue-800 mb-4">Get In Touch</h3>
-                    <form>
-                        <div class="mb-4">
-                            <label for="name" class="block text-gray-700 mb-2">Name</label>
-                            <input type="text" id="name"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="animate__animated animate__fadeInLeft">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-6">Send Us a Message</h3>
+                    <form class="space-y-4 sm:space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" id="name" name="name"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                                <input type="email" id="email" name="email"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                                <input type="text" id="subject" name="subject"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                                <textarea id="message" name="message" rows="4"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary"></textarea>
+                            </div>
                         </div>
-                        <div class="mb-4">
-                            <label for="email" class="block text-gray-700 mb-2">Email</label>
-                            <input type="email" id="email"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <div>
+                            <button type="submit"
+                                class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-primary bg-secondary hover:bg-primary hover:text-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary transition duration-300">
+                                Send Message
+                            </button>
                         </div>
-                        <div class="mb-4">
-                            <label for="subject" class="block text-gray-700 mb-2">Subject</label>
-                            <input type="text" id="subject"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <div class="mb-4">
-                            <label for="message" class="block text-gray-700 mb-2">Message</label>
-                            <textarea id="message" rows="4"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                        </div>
-                        <button type="submit"
-                            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 w-full">Send
-                            Message</button>
                     </form>
                 </div>
 
-                <div>
-                    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-                        <h3 class="text-xl font-bold text-blue-800 mb-4">Contact Information</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <i class="fas fa-map-marker-alt text-blue-600 mt-1 mr-4"></i>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Address</h4>
-                                    <p class="text-gray-600">Information Technology Department<br>
-                                        Faculty of Computing & IT<br>
-                                        University Main Campus<br>
-                                        City, State 12345</p>
-                                </div>
+                <div class="animate__animated animate__fadeInRight">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-6">Contact Information</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-primary text-xl"></i>
                             </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-phone-alt text-blue-600 mt-1 mr-4"></i>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Phone</h4>
-                                    <p class="text-gray-600">+1 (123) 456-7890<br>
-                                        +1 (123) 456-7891 (Fax)</p>
-                                </div>
+                            <div class="ml-3">
+                                <h4 class="text-lg font-medium text-gray-900">Address</h4>
+                                <p class="text-gray-600">Information Technology Department<br>Faculty of Computing &
+                                    IT<br>Osun State University Osogbo Campus<br>Osogbo, Osun State</p>
                             </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-envelope text-blue-600 mt-1 mr-4"></i>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Email</h4>
-                                    <p class="text-gray-600">itdepartment@university.edu<br>
-                                        admissions.it@university.edu</p>
-                                </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-phone-alt text-primary text-xl"></i>
                             </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-clock text-blue-600 mt-1 mr-4"></i>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Office Hours</h4>
-                                    <p class="text-gray-600">Monday - Friday: 8:30 AM - 5:00 PM<br>
-                                        Saturday: 9:00 AM - 1:00 PM</p>
-                                </div>
+                            <div class="ml-3">
+                                <h4 class="text-lg font-medium text-gray-900">Phone</h4>
+                                <p class="text-gray-600">00000000000000<br>000000000000</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-envelope text-primary text-xl"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-lg font-medium text-gray-900">Email</h4>
+                                <p class="text-gray-600">itdepartment@uniosun
+                                    <br>admissions.it@uniosun.edu.ng
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-clock text-primary text-xl"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-lg font-medium text-gray-900">Office Hours</h4>
+                                <p class="text-gray-600">Monday - Friday: 8:30 AM - 5:00 PM<br>Saturday: 9:00 AM - 1:00
+                                    PM<br>Sunday: Closed</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="bg-blue-100 p-4 rounded-lg border-l-4 border-blue-600">
-                        <h4 class="font-bold text-blue-800 mb-2">Follow Us</h4>
+                    <div class="mt-8">
+                        <h4 class="text-lg font-medium text-gray-900 mb-4">Follow Us</h4>
                         <div class="flex space-x-4">
-                            <a href="#" class="text-blue-600 hover:text-blue-800 text-xl"><i
-                                    class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="text-blue-600 hover:text-blue-800 text-xl"><i
-                                    class="fab fa-twitter"></i></a>
-                            <a href="#" class="text-blue-600 hover:text-blue-800 text-xl"><i
-                                    class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="text-blue-600 hover:text-blue-800 text-xl"><i
-                                    class="fab fa-instagram"></i></a>
-                            <a href="#" class="text-blue-600 hover:text-blue-800 text-xl"><i
-                                    class="fab fa-youtube"></i></a>
+                            <a href="#"
+                                class="bg-gray-200 p-3 rounded-full text-primary hover:bg-secondary hover:text-primary transition duration-300">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#"
+                                class="bg-gray-200 p-3 rounded-full text-primary hover:bg-secondary hover:text-primary transition duration-300">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#"
+                                class="bg-gray-200 p-3 rounded-full text-primary hover:bg-secondary hover:text-primary transition duration-300">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -591,61 +745,82 @@
         </div>
     </section>
 
-    <!-- Map Section -->
-    <div class="h-96 bg-gray-200">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215573291865!2d-73.9878449245255!3d40.74844047138961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1689870176729!5m2!1sen!2sus"
-            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+    <!-- Newsletter Section -->
+    <section class="py-12 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl font-bold mb-4">Subscribe to Our Newsletter</h2>
+            <p class="mb-6 max-w-2xl mx-auto">Stay updated with the latest news, events, and research from the
+                Information Technology Department.</p>
+            <form class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Your email address"
+                    class="flex-grow px-4 py-2 rounded-l-md focus:outline-none text-gray-900">
+                <button type="submit"
+                    class="bg-secondary text-primary px-6 py-2 rounded-r-md font-medium hover:bg-accent hover:text-white transition duration-300">Subscribe</button>
+            </form>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-blue-900 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4">IT Department</h3>
-                    <p class="text-blue-200">A leading center for IT education and research, committed to excellence and
-                        innovation in computing technologies.</p>
+                    <h3 class="text-lg font-semibold mb-4">Information Technology</h3>
+                    <p class="text-gray-400">Part of the Faculty of Computing and Information Technology (FOCIT),
+                        dedicated to excellence in IT education and research.</p>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
                     <ul class="space-y-2">
-                        <li><a href="#home" class="text-blue-200 hover:text-white transition">Home</a></li>
-                        <li><a href="#about" class="text-blue-200 hover:text-white transition">About Us</a></li>
-                        <li><a href="#programs" class="text-blue-200 hover:text-white transition">Programs</a></li>
-                        <li><a href="#faculty" class="text-blue-200 hover:text-white transition">Faculty</a></li>
-                        <li><a href="#research" class="text-blue-200 hover:text-white transition">Research</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a>
+                        </li>
+                        <li><a href="#programs"
+                                class="text-gray-400 hover:text-white transition duration-300">Programs</a></li>
+                        <li><a href="#faculty"
+                                class="text-gray-400 hover:text-white transition duration-300">Faculty</a></li>
+                        <li><a href="#research"
+                                class="text-gray-400 hover:text-white transition duration-300">Research</a></li>
+                        <li><a href="#contact"
+                                class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Resources</h3>
+                    <h3 class="text-lg font-semibold mb-4">Related Departments</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-blue-200 hover:text-white transition">Academic Calendar</a></li>
-                        <li><a href="#" class="text-blue-200 hover:text-white transition">Course Catalog</a></li>
-                        <li><a href="#" class="text-blue-200 hover:text-white transition">Student Portal</a></li>
-                        <li><a href="#" class="text-blue-200 hover:text-white transition">Library Resources</a></li>
-                        <li><a href="#" class="text-blue-200 hover:text-white transition">Career Services</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Computer
+                                Science</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Software
+                                Engineering</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Cybersecurity</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Information
+                                Science</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Data Science</a>
+                        </li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Newsletter</h3>
-                    <p class="text-blue-200 mb-4">Subscribe to our newsletter for the latest updates and news.</p>
-                    <form class="flex">
-                        <input type="email" placeholder="Your email"
-                            class="px-4 py-2 w-full rounded-l-lg focus:outline-none text-gray-800">
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r-lg"><i
-                                class="fas fa-paper-plane"></i></button>
-                    </form>
+                    <h3 class="text-lg font-semibold mb-4">University Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="https://uniosun.edu.ng/" target="_blank"
+                                class="text-gray-400 hover:text-white transition duration-300">University
+                                Homepage</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Admissions</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Library</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Alumni</a></li>
+                    </ul>
                 </div>
             </div>
-
-            <div class="border-t border-blue-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-blue-200 mb-4 md:mb-0">© 2023 Information Technology Department. All rights reserved.</p>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-blue-200 hover:text-white transition">Privacy Policy</a>
-                    <a href="#" class="text-blue-200 hover:text-white transition">Terms of Service</a>
-                    <a href="#" class="text-blue-200 hover:text-white transition">Sitemap</a>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">© 2025 Information Technology Department, Faculty of Computing and IT. All
+                    rights reserved.</p>
+                <div class="mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white mx-3">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white mx-3">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white ml-3">Sitemap</a>
                 </div>
             </div>
         </div>
@@ -653,35 +828,82 @@
 
     <!-- Back to Top Button -->
     <button id="back-to-top"
-        class="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
+        class="fixed bottom-8 right-8 bg-secondary text-primary p-3 rounded-full shadow-lg hidden hover:bg-primary hover:text-secondary transition duration-300">
         <i class="fas fa-arrow-up"></i>
     </button>
 
     <script>
-        // Mobile menu toggle
-        document.getElementById('menu-toggle').addEventListener('click', function () {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            let isMenuOpen = false;
+
+            function toggleMenu() {
+                isMenuOpen = !isMenuOpen;
+                mobileMenu.classList.toggle('show');
+                menuButton.setAttribute('aria-expanded', isMenuOpen);
+            }
+
+            // Toggle menu when button is clicked
+            menuButton.addEventListener('click', function (e) {
+                e.stopPropagation();
+                toggleMenu();
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function (e) {
+                if (isMenuOpen && !mobileMenu.contains(e.target) && !menuButton.contains(e.target)) {
+                    toggleMenu();
+                }
+            });
+
+            // Close menu when clicking a link
+            const menuLinks = mobileMenu.getElementsByTagName('a');
+            for (const link of menuLinks) {
+                link.addEventListener('click', function () {
+                    if (isMenuOpen) {
+                        toggleMenu();
+                    }
+                });
+            }
+
+            // Close menu when resizing to desktop view
+            window.addEventListener('resize', function () {
+                if (window.innerWidth >= 768 && isMenuOpen) {
+                    toggleMenu();
+                }
+            });
         });
+
+        // Responsive image loading
+        function loadResponsiveImages() {
+            const images = document.querySelectorAll('img[data-src]');
+            images.forEach(img => {
+                if (window.innerWidth < 768) {
+                    img.src = img.getAttribute('data-src-mobile');
+                } else {
+                    img.src = img.getAttribute('data-src');
+                }
+            });
+        }
+
+        window.addEventListener('load', loadResponsiveImages);
+        window.addEventListener('resize', loadResponsiveImages);
 
         // Back to top button
         const backToTopButton = document.getElementById('back-to-top');
 
         window.addEventListener('scroll', function () {
             if (window.pageYOffset > 300) {
-                backToTopButton.classList.remove('opacity-0', 'invisible');
-                backToTopButton.classList.add('opacity-100', 'visible');
+                backToTopButton.classList.remove('hidden');
             } else {
-                backToTopButton.classList.remove('opacity-100', 'visible');
-                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.add('hidden');
             }
         });
 
         backToTopButton.addEventListener('click', function () {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // Smooth scrolling for anchor links
@@ -697,33 +919,28 @@
                     targetElement.scrollIntoView({
                         behavior: 'smooth'
                     });
-
-                    // Close mobile menu if open
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
                 }
             });
         });
 
         // Animation on scroll
         function animateOnScroll() {
-            const elements = document.querySelectorAll('.fade-in-up');
+            const elements = document.querySelectorAll('.animate__animated');
 
             elements.forEach(element => {
                 const elementPosition = element.getBoundingClientRect().top;
                 const screenPosition = window.innerHeight / 1.3;
 
                 if (elementPosition < screenPosition) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
+                    const animationClass = element.classList[1];
+                    element.classList.add(animationClass);
                 }
             });
         }
 
         window.addEventListener('scroll', animateOnScroll);
-        window.addEventListener('load', animateOnScroll);
+        // Initial check in case elements are already in view
+        animateOnScroll();
     </script>
 </body>
 
